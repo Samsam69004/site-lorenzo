@@ -1,0 +1,39 @@
+<section id="videos" class="py-20 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10">Vidéos</h2>
+
+    <div class="relative overflow-hidden">
+      <div id="videoSlider" class="flex transition-transform duration-500 ease-in-out w-full" style="transform: translateX(0%)">
+        <% videos = [
+          "https://www.youtube.com/embed/XVFMNwbhSAY",
+          "https://www.youtube.com/embed/XoWljXk1LPg",
+          "https://www.youtube.com/embed/k-Ekc5HHuXU",
+          "https://www.youtube.com/embed/GlaUo6vOd5I",
+          "https://www.youtube.com/embed/n2VVvBqlGl0"
+        ] %>
+
+        <% videos.each do |video| %>
+          <div class="min-w-full px-2">
+            <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
+              <iframe class="w-full h-full" src="<%= video %>" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Flèche gauche -->
+      <button onclick="scrollVideo(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10 hover:bg-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Flèche droite -->
+      <button onclick="scrollVideo(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10 hover:bg-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>

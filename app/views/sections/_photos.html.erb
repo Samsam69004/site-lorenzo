@@ -1,0 +1,43 @@
+<section id="photos" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10">PHOTOS</h2>
+
+    <!-- Carousel -->
+    <div class="relative">
+      <div id="photoCarousel" class="flex overflow-x-auto scroll-smooth gap-8 pb-4 no-scrollbar">
+        <% photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg", "photo7.jpg"] %>
+        <% photos.each do |photo| %>
+          <div class="relative flex-shrink-0 w-[90%] sm:w-[33.33%]">
+            <%= image_tag photo, class: "rounded-xl w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105 cursor-pointer", onclick: "openLightbox('#{asset_path(photo)}')" %>
+
+            <!-- Icône zoom -->
+            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10a5 5 0 11-10 0 5 5 0 0110 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
+              </svg>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Boutons de navigation -->
+      <button onclick="scrollPhotos(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10 hover:bg-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button onclick="scrollPhotos(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10 hover:bg-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" class="max-h-[90%] max-w-[90%] rounded-xl shadow-xl transition-all duration-300">
+  </div>
+
+</section>

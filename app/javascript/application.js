@@ -1,0 +1,5 @@
+import "@hotwired/turbo-rails"
+import "./controllers"
+import "../assets/stylesheets/application.tailwind.css"
+import "./custom/lorenzo"
+import "canvas-confetti"

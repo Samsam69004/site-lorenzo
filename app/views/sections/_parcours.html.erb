@@ -1,0 +1,54 @@
+<section id="parcours" class="py-16 bg-white">
+  <div class="w-full max-w-7xl mx-auto px-6">
+    <!-- Titre -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center w-full">PARCOURS</h2>
+
+    <!-- Bloc portrait + texte -->
+    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+      <!-- Portrait -->
+      <div class="flex justify-center md:w-2/5">
+        <div class="relative group">
+          <%= image_tag "portrait.jpg", id: "portrait", class: "w-64 h-64 rounded-full object-cover shadow-2xl ring-4 ring-gray-300 transition-transform duration-300 group-hover:scale-105 cursor-pointer", onclick: "zoomPortrait()" %>
+
+          <!-- Icône zoom au hover -->
+          <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10a5 5 0 11-10 0 5 5 0 0110 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texte -->
+      <div class="text-gray-600 text-justify md:w-3/5">
+        <p class="leading-relaxed mb-6">
+          Comédien formé à l’école <strong>Actors Factory</strong> de Paris entre 2019 et 2021, où j’ai approfondi les techniques avancées en art dramatique. Sous la direction de Tiffany Stern et d’autres coachs expérimentés, j’ai appris à affiner mon jeu, à me préparer aux exigences du métier d’acteur, et à explorer différentes approches du travail scénique.
+        </p>
+        <p class="leading-relaxed mb-6">
+          Avant cela, j’ai suivi une première formation de trois ans en art dramatique (2016-2019), encadrée par des professeurs venus de cultures et de méthodes diverses. Cette diversité m’a permis de développer une palette de jeu riche et nuancée. J’ai également eu la chance de participer à un stage intensif au Club Manhattan à New York, qui a renforcé ma vision internationale du métier.
+        </p>
+        <p class="leading-relaxed mb-6">
+          Pour affiner ma technique, j’ai pris part à un stage de 39 heures dédié à la respiration et à la maîtrise du souffle, animé par des coachs de renommée internationale tels que Carol Fox Prescott, Joanna Beckson et Jodie Lynne McClintock.
+        </p>
+        <p class="leading-relaxed mb-6">
+          Sur scène, j’ai interprété plusieurs rôles dans des pièces de théâtre, notamment au sein de la troupe Les Culottés, où j’ai également coécrit et mis en scène des spectacles. J’ai aussi travaillé sous la direction de Cécile Chavel, incarnant différents premiers rôles.
+        </p>
+        <p class="leading-relaxed mb-6">
+          Devant la caméra, j’ai eu la chance de jouer dans plusieurs courts-métrages, parmi lesquels <em>Rien de spécial</em>, <em>Au temps du désert</em> ou encore <em>Naufragés</em>, dans des rôles principaux ou secondaires.
+        </p>
+        <p class="leading-relaxed mb-6">
+          En parallèle, je cultive une forte polyvalence physique et artistique. Passionné de sport (football, tennis, équitation…), j’utilise ces disciplines pour nourrir mon jeu et enrichir mes personnages. Je parle aussi anglais et espagnol, ce qui me permet d’ouvrir mon travail à d’autres horizons.
+        </p>
+
+        <%= link_to "Télécharger le CV", asset_path("cv_lorenzo.pdf"), target: "_blank", class: "inline-block px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox pour zoom -->
+  <div id="portraitLightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50" onclick="closePortraitZoom()">
+    <img id="lightboxPortrait" src="<%= asset_path('portrait.jpg') %>" class="max-h-[90%] max-w-[90%] rounded-full shadow-2xl transition-transform duration-300 transform scale-0">
+  </div>
+</section>
