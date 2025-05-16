@@ -8,7 +8,10 @@ class ContactsController < ApplicationController
     if @contact.valid?
       ContactMailer.with(contact: @contact).send_contact_email.deliver_now
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "Merci pour ton message !" }
+        format.html do
+          redirect_to root_path(anchor: "top"), notice: "Merci pour ton message !"
+        end
+
         format.json { render json: { success: true } }
       end
     else
@@ -25,5 +28,3 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :email, :message)
   end
 end
-
-

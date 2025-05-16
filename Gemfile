@@ -19,9 +19,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 gem "tailwindcss-rails"
-group :development do
-  gem 'letter_opener'
-end
+gem 'dotenv-rails', groups: [:development, :test]
+
+
 
 
 

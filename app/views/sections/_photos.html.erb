@@ -1,43 +1,49 @@
-<section id="photos" class="py-20 bg-white">
+<% photos = {
+  "Tournages" => ["photo9.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg", "photo7.jpg", "photo8.jpg"],
+  "Portraits"  => ["photo9.jpg","photo10.jpg", "photo11.jpg", "photo12.jpg", "photo13.jpg", "photo14.jpg", "photo15.jpg", "photo16.jpg"],
+  "Scène"      => ["photo17.jpg", "photo18.jpg", "photo19.jpg", "photo20.jpg", "photo21.jpg", "photo22.jpg", "photo23.jpg", "photo24.jpg"]
+} %>
+
+
+<section id="photos" class="py-20 bg-gray-100">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-3xl font-bold text-gray-800 mb-10">PHOTOS</h2>
 
-    <!-- Carousel -->
-    <div class="relative">
-      <div id="photoCarousel" class="flex overflow-x-auto scroll-smooth gap-8 pb-4 no-scrollbar">
-        <% photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg", "photo6.jpg", "photo7.jpg"] %>
-        <% photos.each do |photo| %>
-          <div class="relative flex-shrink-0 w-[90%] sm:w-[33.33%]">
-            <%= image_tag photo, class: "rounded-xl w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105 cursor-pointer", onclick: "openLightbox('#{asset_path(photo)}')" %>
+    <!-- Onglets -->
+    <div class="flex justify-center mb-6 space-x-4">
+      <% photos.keys.each_with_index do |album, index| %>
+        <% slug = album.parameterize %>
+        <button
+          class="album-tab px-4 py-2 rounded font-semibold transition-all duration-200
+          <%= index == 0 ? 'bg-violetLorenzo text-white shadow' : 'bg-purple-100 text-violet-800 hover:bg-purple-200' %>"
+          data-album="<%= slug %>">
+          <%= album %>
+        </button>
 
-            <!-- Icône zoom -->
-            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10a5 5 0 11-10 0 5 5 0 0110 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
-              </svg>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- Boutons de navigation -->
-      <button onclick="scrollPhotos(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10 hover:bg-gray-200">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button onclick="scrollPhotos(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 z-10 hover:bg-gray-200">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+      <% end %>
     </div>
+
+    <!-- Albums -->
+    <% photos.each_with_index do |(album, photo_list), index| %>
+      <% slug = album.parameterize %>
+      <div class="photo-album <%= index != 0 ? 'hidden' : '' %>" data-album="<%= slug %>">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <% photo_list.each do |photo| %>
+            <div class="overflow-hidden rounded-xl shadow cursor-pointer hover:scale-105 transition"
+                onclick="openLightbox('<%= asset_path("photos/#{photo}") %>')">
+              <%= image_tag("photos/#{photo}", class: "w-full aspect-[3/4] object-cover object-center rounded-xl transition-transform duration-300 group-hover:scale-105") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" class="max-h-[90%] max-w-[90%] rounded-xl shadow-xl transition-all duration-300">
+  <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+    <div class="relative max-w-4xl w-full px-4">
+      <img id="lightboxImage" src="" class="w-full rounded-xl shadow-lg max-h-[90vh] object-contain">
+      <button onclick="closeLightbox()" class="absolute top-2 right-2 text-white text-3xl font-bold">&times;</button>
+    </div>
   </div>
-
 </section>

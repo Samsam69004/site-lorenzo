@@ -13,65 +13,36 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-
-
-
-
   </head>
 
-  <body>
-  <% if flash[:notice] %>
-    <div class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded shadow-lg z-50">
-  <%= flash[:notice] %>
-  </div>
-  <% end %>
+  <body class="min-h-screen flex flex-col">
+    <% if flash[:notice] %>
+      <div class="notice fixed top-6 left-1/2 transform -translate-x-1/2
+        bg-green-600 text-white px-6 py-3 rounded shadow-lg z-50 opacity-0
+        transition-all duration-700 ease-in-out text-lg font-semibold w-auto max-w-xl text-center min-w-[300px]">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
-    <main class="w-full max-w-7xl mx-auto mt-5 px-6">
-  <%= yield %>
+
+
+    <main class="flex-grow w-full max-w-7xl mx-auto mt-5 px-6">
+      <%= yield %>
     </main>
 
-<footer class="bg-gray-900 text-white text-center py-6 mt-20">
-  <p class="text-sm">
-    &copy; <%= Time.now.year %> Lorenzo Granjon. Tous droits réservés.
-  </p>
-  <p class="text-xs mt-2">
-    Site réalisé avec ❤️ par <a href="https://www.linkedin.com/in/sami-chabane-085881151/" target="_blank" class="underline hover:text-gray-300">Sami Chabane</a>
-  </p>
-  <div class="space-x-4 mt-2">
-    <%= link_to "Mentions légales", mentions_legales_path, class: "underline hover:text-green-600" %>
-    <%= link_to "Politique de confidentialité", politique_confidentialite_path, class: "underline hover:text-green-600" %>
-  </div>
-</footer>
-
-  <% if flash[:notice] %>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const jsConfetti = new JSConfetti();
-        jsConfetti.addConfetti();
-
-        setTimeout(() => alert("<%= j flash[:notice] %>"), 300);
-      });
-    </script>
-  <% end %>
-  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-  <% if flash[:notice] %>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const jsConfetti = new JSConfetti();
-        jsConfetti.addConfetti();
-
-        setTimeout(() => {
-        alert("<%= j flash[:notice] %>");
-        }, 300);
-      });
-    </script>
-  <% end %>
-
-<%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
-
-  </body>
+    <footer class="bg-violetLorenzo text-white text-center py-6 mt-20">
+      <p class="text-sm">
+        &copy; <%= Time.now.year %> Lorenzo Granjon. Tous droits réservés.
+      </p>
+      <p class="text-xs mt-2">
+        Site réalisé avec ❤️ par <a href="https://www.linkedin.com/in/sami-chabane-085881151/" target="_blank" class="underline hover:text-gray-200">Sami Chabane</a>
+      </p>
+      <div class="space-x-4 mt-2">
+        <%= link_to "Mentions légales", mentions_legales_path, class: "underline hover:text-gray-200" %>
+        <%= link_to "Politique de confidentialité", politique_confidentialite_path, class: "underline hover:text-gray-200" %>
+      </div>
+    </footer>
+    <script type="module" src="<%= asset_path('application.js') %>" data-turbo-track="reload"></script>
 </html>

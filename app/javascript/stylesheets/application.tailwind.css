@@ -2,10 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Scroll fluide */
 html {
   scroll-behavior: smooth;
 }
 
+/* Suppression des scrollbars */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -14,6 +16,3 @@ html {
   scrollbar-width: none;
 }
 
-html {
-  scroll-behavior: smooth;
-}

@@ -1,18 +1,17 @@
-<nav class="fixed top-0 left-0 w-full bg-gray-900 text-white shadow z-50">
+<nav class="fixed top-0 left-0 w-full bg-[#6B3FA0] text-white shadow z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <div class="text-lg font-bold">
-      Lorenzo Granjon
+    <div class="text-xl font-bold tracking-wide bg-gradient-to-r from-white via-purple-300 to-white bg-clip-text text-transparent animate-pulse">
+      LORENZO GRANJON
     </div>
 
     <!-- Liens -->
     <div class="space-x-6 text-sm hidden md:flex">
-      <a href="#parcours" class="hover:text-gray-300 transition">PARCOURS</a>
-      <a href="#photos" class="hover:text-gray-300 transition">PHOTOS</a>
-      <a href="#videos" class="hover:text-gray-300 transition">VIDEOS</a>
-      <a href="#contact" class="hover:text-gray-300 transition">CONTACT</a>
-      <%= link_to "Contact", "#contact", class: "hover:underline" %>
-
+      <% ["parcours", "photos", "videos", "contact"].each do |anchor| %>
+        <%= link_to "##{anchor}", class: "relative inline-block bg-gradient-to-r from-white via-purple-300 to-white bg-clip-text font-bold text-transparent animate-pulse hover:opacity-90 transition duration-300 before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[2px] before:bg-white hover:before:w-full before:transition-all before:duration-300 uppercase" do %>
+          <%= anchor.upcase %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </nav>
